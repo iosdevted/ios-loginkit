@@ -21,6 +21,7 @@
 		9F305C18252471FA0016843C /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C17252471FA0016843C /* DividerView.swift */; };
 		9F305C1B252477B30016843C /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C1A252477B30016843C /* RegistrationController.swift */; };
 		9F305C1E25247B510016843C /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C1D25247B510016843C /* ResetPasswordController.swift */; };
+		9F305C212524A02B0016843C /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C202524A02B0016843C /* AuthenticationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		9F305C17252471FA0016843C /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
 		9F305C1A252477B30016843C /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		9F305C1D25247B510016843C /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
+		9F305C202524A02B0016843C /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		9F305C022524590E0016843C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9F305C202524A02B0016843C /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				9F305C1B252477B30016843C /* RegistrationController.swift in Sources */,
 				9F305C15252469BF0016843C /* AuthButton.swift in Sources */,
 				9F305BEF2524582D0016843C /* ViewController.swift in Sources */,
+				9F305C212524A02B0016843C /* AuthenticationViewModel.swift in Sources */,
 				9F305C122524675E0016843C /* CustomTextField.swift in Sources */,
 				9F305C07252459840016843C /* LoginController.swift in Sources */,
 				9F305BEB2524582D0016843C /* AppDelegate.swift in Sources */,

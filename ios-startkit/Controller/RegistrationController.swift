@@ -11,6 +11,8 @@ class RegistrationController: UIViewController {
     
     // MARK: - Properties
     
+    private var viewModel = RegistrationViewModel()
+    
     private let iconImage = UIImageView(image: #imageLiteral(resourceName: "firebase-logo"))
     
     private let emailTextField = CustomTextField(placeholder: "Email")
@@ -53,6 +55,7 @@ class RegistrationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNotificationObservers()
     }
     
     // MARK: - Selectors
@@ -64,6 +67,19 @@ class RegistrationController: UIViewController {
     @objc func showLoginController() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc func textDidChange(_ sender: UITextField) {
+        if sender == emailTextField {
+            viewModel.email = sender.text
+        } else if sender == passwordTextField {
+            viewModel.password = sender.text
+        } else {
+            viewModel.fullname = sender.text
+        }
+        
+        updateForm()
+    }
+    
     
     // MARK: - Helpers
     
@@ -90,5 +106,21 @@ class RegistrationController: UIViewController {
         view.addSubview(alreadyHaveAccountButton)
         alreadyHaveAccountButton.centerX(inView: view)
         alreadyHaveAccountButton.anchor(bottom: view.safeAreaLayoutGuide.bottomAnchor)
+    }
+    
+    func configureNotificationObservers() {
+        emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+        fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    }
+}
+
+//MARK: - FormViewModel
+
+extension RegistrationController: FormViewModel {
+    func updateForm() {
+        signUpButton.isEnabled = viewModel.shouldEnableButton
+        signUpButton.backgroundColor = viewModel.buttonBackgroundColor
+        signUpButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
     }
 }
