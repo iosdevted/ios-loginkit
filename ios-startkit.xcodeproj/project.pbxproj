@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,14 @@
 		9F305BF22524582D0016843C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F305BF02524582D0016843C /* Main.storyboard */; };
 		9F305BF42524582E0016843C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F305BF32524582E0016843C /* Assets.xcassets */; };
 		9F305BF72524582E0016843C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F305BF52524582E0016843C /* LaunchScreen.storyboard */; };
+		9F305C07252459840016843C /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C06252459840016843C /* LoginController.swift */; };
+		9F305C0A252460030016843C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C09252460030016843C /* Extensions.swift */; };
+		9F305C0F252461470016843C /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9F305C0E252461470016843C /* JGProgressHUD */; };
+		9F305C122524675E0016843C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C112524675E0016843C /* CustomTextField.swift */; };
+		9F305C15252469BF0016843C /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C14252469BF0016843C /* AuthButton.swift */; };
+		9F305C18252471FA0016843C /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C17252471FA0016843C /* DividerView.swift */; };
+		9F305C1B252477B30016843C /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C1A252477B30016843C /* RegistrationController.swift */; };
+		9F305C1E25247B510016843C /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C1D25247B510016843C /* ResetPasswordController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,13 @@
 		9F305BF32524582E0016843C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F305BF62524582E0016843C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F305BF82524582E0016843C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F305C06252459840016843C /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		9F305C09252460030016843C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		9F305C112524675E0016843C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		9F305C14252469BF0016843C /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
+		9F305C17252471FA0016843C /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
+		9F305C1A252477B30016843C /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		9F305C1D25247B510016843C /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F305C0F252461470016843C /* JGProgressHUD in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,8 +72,14 @@
 		9F305BE92524582D0016843C /* ios-startkit */ = {
 			isa = PBXGroup;
 			children = (
-				9F305BEA2524582D0016843C /* AppDelegate.swift */,
+				9F305C052524593D0016843C /* Utills */,
+				9F305C04252459120016843C /* Model */,
+				9F305C03252459100016843C /* View */,
+				9F305C022524590E0016843C /* ViewModel */,
+				9F305BFF252458D90016843C /* Controller */,
+				9F305C00252458FF0016843C /* API */,
 				9F305BEC2524582D0016843C /* SceneDelegate.swift */,
+				9F305BEA2524582D0016843C /* AppDelegate.swift */,
 				9F305BEE2524582D0016843C /* ViewController.swift */,
 				9F305BF02524582D0016843C /* Main.storyboard */,
 				9F305BF32524582E0016843C /* Assets.xcassets */,
@@ -65,6 +87,55 @@
 				9F305BF82524582E0016843C /* Info.plist */,
 			);
 			path = "ios-startkit";
+			sourceTree = "<group>";
+		};
+		9F305BFF252458D90016843C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9F305C06252459840016843C /* LoginController.swift */,
+				9F305C1A252477B30016843C /* RegistrationController.swift */,
+				9F305C1D25247B510016843C /* ResetPasswordController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9F305C00252458FF0016843C /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		9F305C022524590E0016843C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9F305C03252459100016843C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F305C112524675E0016843C /* CustomTextField.swift */,
+				9F305C14252469BF0016843C /* AuthButton.swift */,
+				9F305C17252471FA0016843C /* DividerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9F305C04252459120016843C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9F305C052524593D0016843C /* Utills */ = {
+			isa = PBXGroup;
+			children = (
+				9F305C09252460030016843C /* Extensions.swift */,
+			);
+			path = Utills;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +154,9 @@
 			dependencies = (
 			);
 			name = "ios-startkit";
+			packageProductDependencies = (
+				9F305C0E252461470016843C /* JGProgressHUD */,
+			);
 			productName = "ios-startkit";
 			productReference = 9F305BE72524582D0016843C /* ios-startkit.app */;
 			productType = "com.apple.product-type.application";
@@ -110,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 9F305BDE2524582D0016843C;
+			packageReferences = (
+				9F305C0D252461470016843C /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+			);
 			productRefGroup = 9F305BE82524582D0016843C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +214,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F305C0A252460030016843C /* Extensions.swift in Sources */,
+				9F305C1B252477B30016843C /* RegistrationController.swift in Sources */,
+				9F305C15252469BF0016843C /* AuthButton.swift in Sources */,
 				9F305BEF2524582D0016843C /* ViewController.swift in Sources */,
+				9F305C122524675E0016843C /* CustomTextField.swift in Sources */,
+				9F305C07252459840016843C /* LoginController.swift in Sources */,
 				9F305BEB2524582D0016843C /* AppDelegate.swift in Sources */,
+				9F305C18252471FA0016843C /* DividerView.swift in Sources */,
+				9F305C1E25247B510016843C /* ResetPasswordController.swift in Sources */,
 				9F305BED2524582D0016843C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +425,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F305C0D252461470016843C /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F305C0E252461470016843C /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F305C0D252461470016843C /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9F305BDF2524582D0016843C /* Project object */;
 }
