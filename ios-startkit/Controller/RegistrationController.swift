@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController: UIViewController {
     
@@ -61,7 +62,30 @@ class RegistrationController: UIViewController {
     // MARK: - Selectors
     
     @objc func handleSignUp() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let fullname = fullnameTextField.text else { return }
         
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                print("Deubg: failed to create User with error: \(error.localizedDescription)")
+                return
+            }
+            guard let uid = result?.user.uid else { return }
+            
+            let values = ["email": email, "fullname": fullname]
+            
+            Database.database().reference().child("users").child(uid).updateChildValues(values) {
+                (err, ref) in
+                
+                if let error = error {
+                    print("Deubg: failed to upload User with error: \(error.localizedDescription)")
+                    return
+                } 
+                print("Debug: successfully created user and uploaded ")
+            }
+            
+        }
     }
     
     @objc func showLoginController() {
