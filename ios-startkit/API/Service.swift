@@ -43,12 +43,18 @@ struct Service {
             }
             
             guard let uid = result?.user.uid else { return }
-            guard let email = result?.user.email else { return }
-            guard let fullname = result?.user.displayName else { return }
-                
-            let values = ["email": email, "fullname": fullname, "hasSeenOnboarding": false] as [String : Any]
             
-            REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
+            REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+                if !snapshot.exists() {
+                    guard let email = result?.user.email else { return }
+                    guard let fullname = result?.user.displayName else { return }
+                    let values = ["email": email, "fullname": fullname, "hasSeenOnboarding": false] as [String : Any]
+                    
+                    REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
+                } else {
+                    completion(error, REF_USERS.child(uid))
+                }
+            }
         }
     }
     

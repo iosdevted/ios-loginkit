@@ -13,8 +13,22 @@ class HomeController: UIViewController {
     // MARK: - Properties
     
     private var user: User? {
-        didSet { presentOnboardingIfNecessary() }
+        didSet {
+            presentOnboardingIfNecessary()
+            showWelcomeLabel()
+        }
+        
     }
+    
+    private var welcomeLabel: UILabel = {
+       let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.systemFont(ofSize: 28)
+        label.text = "Welcome👋"
+        label.alpha = 0
+        
+        return label
+    }()
     
     // MARK: - LifeCycle
     
@@ -71,15 +85,31 @@ class HomeController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.barStyle = .black
-        navigationItem.title = "Welcome👋"
+        navigationItem.title = "Home"
         
         let image = UIImage(systemName: "arrow.left")
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image,style: .plain, target: self, action: #selector(handleLogout))
         navigationItem.leftBarButtonItem?.tintColor = .white
+        
+        view.addSubview(welcomeLabel)
+        welcomeLabel.centerX(inView: view)
+        welcomeLabel.centerY(inView: view)
+    }
+    
+    fileprivate func showWelcomeLabel() {
+        guard let user = user else { return }
+        guard user.hasSeenOnboarding else { return }
+        
+        welcomeLabel.text =  "Welcome, \(user.fullname)👋"
+        
+        UIView.animate(withDuration: 1) {
+            self.welcomeLabel.alpha = 1
+        }
     }
     
     fileprivate func presentLoginController() {
         let controller = LoginController()
+        controller.delegate = self
         let nav = UINavigationController(rootViewController: controller)
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true, completion: nil)
@@ -96,13 +126,21 @@ class HomeController: UIViewController {
     }
 }
 
+// MARK: - OnboardingControllerDelegate
+
 extension HomeController: OnboardingControllerDelegate {
     func controllerWantsToDismiss(_ controller: OnboardingController) {
         controller.dismiss(animated: true, completion: nil)
         
         Service.updateUserHasSeenOnboarding { (error, ref) in
             self.user?.hasSeenOnboarding = true
-            print("DEBUG: Did set has seen onboarding")
         }
+    }
+}
+
+extension HomeController: AuthenticationDelegate {
+    func authenticationComplete() {
+        dismiss(animated: true, completion: nil)
+        fetchUser()
     }
 }

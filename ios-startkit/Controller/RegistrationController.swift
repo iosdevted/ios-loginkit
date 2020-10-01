@@ -13,9 +13,9 @@ class RegistrationController: UIViewController {
     // MARK: - Properties
     
     private var viewModel = RegistrationViewModel()
+    weak var delegate: AuthenticationDelegate?
     
     private let iconImage = UIImageView(image: #imageLiteral(resourceName: "firebase-logo"))
-    
     private let emailTextField = CustomTextField(placeholder: "Email")
     private let fullnameTextField = CustomTextField(placeholder: "Fullname")
     
@@ -74,7 +74,7 @@ class RegistrationController: UIViewController {
                 return
             }
             
-            self.dismiss(animated: true, completion: nil)
+            self.delegate?.authenticationComplete()
         }
     }
     
