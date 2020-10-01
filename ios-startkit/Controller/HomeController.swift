@@ -12,6 +12,10 @@ class HomeController: UIViewController {
 
     // MARK: - Properties
     
+    private var user: User? {
+        didSet { presentOnboardingIfNecessary() }
+    }
+    
     // MARK: - LifeCycle
     
     override func viewDidLoad() {
@@ -35,6 +39,12 @@ class HomeController: UIViewController {
     
     // MARK: - API
     
+    func fetchUser() {
+        Service.fetchUser { (user) in
+            self.user = user
+        }
+    }
+    
     func logout() {
         do {
             try Auth.auth().signOut()
@@ -44,20 +54,13 @@ class HomeController: UIViewController {
         }
     }
     
-    fileprivate func presentLoginController() {
-        let controller = LoginController()
-        let nav = UINavigationController(rootViewController: controller)
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true, completion: nil)
-    }
-    
     func authenticateUser() {
         if Auth.auth().currentUser?.uid == nil {
             DispatchQueue.main.async {
                 self.presentLoginController()
             }
         } else {
-            print("debug: user is logged in. ")
+            fetchUser()
         }
     }
     
@@ -75,5 +78,31 @@ class HomeController: UIViewController {
         navigationItem.leftBarButtonItem?.tintColor = .white
     }
     
+    fileprivate func presentLoginController() {
+        let controller = LoginController()
+        let nav = UINavigationController(rootViewController: controller)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true, completion: nil)
+    }
     
+    fileprivate func presentOnboardingIfNecessary() {
+        guard let user = user else { return }
+        guard !user.hasSeenOnboarding else { return }
+        
+        let controller = OnboardingController()
+        controller.delegate = self
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true, completion: nil)
+    }
+}
+
+extension HomeController: OnboardingControllerDelegate {
+    func controllerWantsToDismiss(_ controller: OnboardingController) {
+        controller.dismiss(animated: true, completion: nil)
+        
+        Service.updateUserHasSeenOnboarding { (error, ref) in
+            self.user?.hasSeenOnboarding = true
+            print("DEBUG: Did set has seen onboarding")
+        }
+    }
 }

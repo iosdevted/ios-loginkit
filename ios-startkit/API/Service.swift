@@ -25,9 +25,9 @@ struct Service {
             }
             
             guard let uid = result?.user.uid else { return }
-            let values = ["email": email, "fullname": fullname]
+            let values = ["email": email, "fullname": fullname, "hasSeenOnboarding": false] as [String : Any]
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: completion)
+            REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
         }
     }
     
@@ -46,9 +46,27 @@ struct Service {
             guard let email = result?.user.email else { return }
             guard let fullname = result?.user.displayName else { return }
                 
-            let values = ["email": email, "fullname": fullname]
+            let values = ["email": email, "fullname": fullname, "hasSeenOnboarding": false] as [String : Any]
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: completion)
+            REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
         }
+    }
+    
+    static func fetchUser(completion: @escaping(User) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        REF_USERS.child(uid).observeSingleEvent(of: .value) { (snapshot) in
+            let uid = snapshot.key
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
+            
+            let user = User(uid: uid, dictionary: dictionary)
+            completion(user)
+        }
+    }
+    
+    static func updateUserHasSeenOnboarding(completion: @escaping(DatabaseCompletion)) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        REF_USERS.child(uid).child("hasSeenOnboarding").setValue(true, withCompletionBlock: completion)
+        
     }
 }

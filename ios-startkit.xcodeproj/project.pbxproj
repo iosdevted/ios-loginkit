@@ -24,7 +24,10 @@
 		9F305C1E25247B510016843C /* ResetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C1D25247B510016843C /* ResetPasswordController.swift */; };
 		9F305C212524A02B0016843C /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F305C202524A02B0016843C /* AuthenticationViewModel.swift */; };
 		9F5325392525726800D0670C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5325382525726800D0670C /* Service.swift */; };
-		9F53253C25257A6100D0670C /* onboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53253B25257A6100D0670C /* onboardingController.swift */; };
+		9F53253C25257A6100D0670C /* OnboardingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53253B25257A6100D0670C /* OnboardingController.swift */; };
+		9F53254025257F7600D0670C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53253F25257F7600D0670C /* Constants.swift */; };
+		9F5325432525856E00D0670C /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5325422525856E00D0670C /* OnboardingViewModel.swift */; };
+		9F5325462525966C00D0670C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5325452525966C00D0670C /* User.swift */; };
 		9FCF4ABB2524B8C60069262E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF4ABA2524B8C60069262E /* HomeController.swift */; };
 		9FDD2CB12524AED700F5C3CD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FDD2CB02524AED700F5C3CD /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -50,7 +53,10 @@
 		9F305C1D25247B510016843C /* ResetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordController.swift; sourceTree = "<group>"; };
 		9F305C202524A02B0016843C /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		9F5325382525726800D0670C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		9F53253B25257A6100D0670C /* onboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingController.swift; sourceTree = "<group>"; };
+		9F53253B25257A6100D0670C /* OnboardingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingController.swift; sourceTree = "<group>"; };
+		9F53253F25257F7600D0670C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9F5325422525856E00D0670C /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		9F5325452525966C00D0670C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9FCF4ABA2524B8C60069262E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		9FDD2CB02524AED700F5C3CD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,7 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				9F305C06252459840016843C /* LoginController.swift */,
-				9F53253B25257A6100D0670C /* onboardingController.swift */,
+				9F53253B25257A6100D0670C /* OnboardingController.swift */,
 				9F305C1A252477B30016843C /* RegistrationController.swift */,
 				9F305C1D25247B510016843C /* ResetPasswordController.swift */,
 				9FCF4ABA2524B8C60069262E /* HomeController.swift */,
@@ -140,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				9F305C202524A02B0016843C /* AuthenticationViewModel.swift */,
+				9F5325422525856E00D0670C /* OnboardingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 		9F305C04252459120016843C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9F5325452525966C00D0670C /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				9F305C09252460030016843C /* Extensions.swift */,
+				9F53253F25257F7600D0670C /* Constants.swift */,
 			);
 			path = Utills;
 			sourceTree = "<group>";
@@ -318,9 +327,12 @@
 			files = (
 				9F305C0A252460030016843C /* Extensions.swift in Sources */,
 				9F5325392525726800D0670C /* Service.swift in Sources */,
-				9F53253C25257A6100D0670C /* onboardingController.swift in Sources */,
+				9F53253C25257A6100D0670C /* OnboardingController.swift in Sources */,
+				9F5325432525856E00D0670C /* OnboardingViewModel.swift in Sources */,
 				9F305C1B252477B30016843C /* RegistrationController.swift in Sources */,
 				9F305C15252469BF0016843C /* AuthButton.swift in Sources */,
+				9F53254025257F7600D0670C /* Constants.swift in Sources */,
+				9F5325462525966C00D0670C /* User.swift in Sources */,
 				9F305BEF2524582D0016843C /* ViewController.swift in Sources */,
 				9F305C212524A02B0016843C /* AuthenticationViewModel.swift in Sources */,
 				9F305C122524675E0016843C /* CustomTextField.swift in Sources */,
