@@ -99,19 +99,25 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
+        
+        showLoader(true)
 
         Service.loginUserIn(withEmail: email, password: password) { (result, error) in
+            self.showLoader(false)
+            
             if let error = error {
-                print("DEBUG: Errir signing in \(error.localizedDescription)")
+                self.showMessage(withTitle: "Error", message: error.localizedDescription)
                 return
             }
-            
+
             self.delegate?.authenticationComplete()
         }
     }
     
     @objc func showForgotPassword() {
         let controller = ResetPasswordController()
+        controller.email = emailTextField.text
+        controller.delegate = self 
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -197,6 +203,8 @@ extension LoginController: FormViewModel {
     }
 }
 
+//MARK: - GIDSignInDelegate
+
 extension LoginController: GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         Service.signInWithGoogle(didSignInFor: user) { (error, ref) in
@@ -205,3 +213,11 @@ extension LoginController: GIDSignInDelegate {
     }
 }
 
+//MARK: - ResetPasswordControllerDelegate
+
+extension LoginController: ResetPasswordControllerDelegate {
+    func didSendResetPasswordLink() {
+        navigationController?.popViewController(animated: true)
+        self.showMessage(withTitle: "Success", message: MSG_RESET_PASSWORD_LINK_SENT)
+    }
+}

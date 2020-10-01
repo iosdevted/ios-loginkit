@@ -20,7 +20,7 @@ struct Service {
                                          fullname: String, completion: @escaping(DatabaseCompletion)) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
-                print("DEBUG: failed to create User with error: \(error.localizedDescription)")
+                completion(error, REF_USERS)
                 return
             }
             
@@ -39,6 +39,7 @@ struct Service {
         Auth.auth().signIn(with: credential) { (result, error) in
             if let error = error {
                 print("DEBUG: Failed to sign in with google: \(error.localizedDescription)")
+                completion(error, REF_USERS)
                 return
             }
             
@@ -74,5 +75,9 @@ struct Service {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         REF_USERS.child(uid).child("hasSeenOnboarding").setValue(true, withCompletionBlock: completion)
         
+    }
+    
+    static func resetPassword(forEmail email: String, completion: SendPasswordResetCallback?) {
+        Auth.auth().sendPasswordReset(withEmail: email, completion: completion)
     }
 }

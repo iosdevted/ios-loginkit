@@ -7,14 +7,19 @@
 
 import UIKit
 
+protocol ResetPasswordControllerDelegate: class {
+    func didSendResetPasswordLink()
+}
+
 class ResetPasswordController: UIViewController {
 
     // MARK: - Properties
     
     private var viewModel = ResetPasswordViewModel()
+    weak var delegate: ResetPasswordControllerDelegate?
+    var email: String?
     
     private let iconImage = UIImageView(image: #imageLiteral(resourceName: "firebase-logo"))
-    
     private let emailTextField = CustomTextField(placeholder: "Email")
     
     private let resetpasswordButton: AuthButton = {
@@ -39,12 +44,25 @@ class ResetPasswordController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNotificationObservers()
+        loadEmail()
     }
     
     //MARK: - Selectors
     
     @objc func handleResetPassword() {
+        guard let email = viewModel.email else { return }
         
+        showLoader(true)
+        
+        Service.resetPassword(forEmail: email) { (error) in
+            self.showLoader(false)
+            if let error = error {
+                self.showMessage(withTitle: "Error", message: error.localizedDescription)
+                return
+            }
+            
+            self.delegate?.didSendResetPasswordLink()
+        }
     }
     
     @objc func handleDismissal() {
@@ -84,10 +102,21 @@ class ResetPasswordController: UIViewController {
                      paddingRight: 32)
     }
     
+    func loadEmail() {
+        guard let email = email else { return }
+        viewModel.email = email
+        
+        emailTextField.text = email
+        
+        updateForm()
+    }
+    
     func configureNotificationObservers() {
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
 }
+
+// MARK: - FormViewModel
 
 extension ResetPasswordController: FormViewModel {
     func updateForm() {
