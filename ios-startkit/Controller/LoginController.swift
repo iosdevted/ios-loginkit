@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
 class LoginController: UIViewController {
     
@@ -85,6 +86,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNotificationObservers()
+        configureGoogleSignIn()
     }
     
     //MARK: - Selectors
@@ -92,8 +94,8 @@ class LoginController: UIViewController {
     @objc func handleLogin() {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        
-        Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+
+        Service.loginUserIn(withEmail: email, password: password) { (result, error) in
             if let error = error {
                 print("DEBUG: Errir signing in \(error.localizedDescription)")
                 return
@@ -109,7 +111,7 @@ class LoginController: UIViewController {
     }
     
     @objc func handleGoogleLogin() {
-        print("DEBUG: Handle google Login")
+        GIDSignIn.sharedInstance()?.signIn()
     }
     
     @objc func showRegistrationController() {
@@ -172,6 +174,11 @@ class LoginController: UIViewController {
         emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     }
+    
+    func configureGoogleSignIn() {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.delegate = self
+    }
 }
 
 //MARK: - FormViewModel
@@ -181,6 +188,15 @@ extension LoginController: FormViewModel {
         loginButton.isEnabled = viewModel.shouldEnableButton
         loginButton.backgroundColor = viewModel.buttonBackgroundColor
         loginButton.setTitleColor(viewModel.buttonTitleColor, for: .normal)
+    }
+}
+
+extension LoginController: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        Service.signInWithGoogle(didSignInFor: user) { (error, ref) in
+            print("DEBUG: Successfully signed in with google...")
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
 
