@@ -9,6 +9,7 @@ import Firebase
 import GoogleSignIn
 
 typealias DatabaseCompletion = ((Error?, DatabaseReference) -> Void)
+typealias FirestoreCompletion = (Error?) -> Void
 
 struct Service {
     
@@ -28,6 +29,25 @@ struct Service {
             let values = ["email": email, "fullname": fullname, "hasSeenOnboarding": false] as [String : Any]
             
             REF_USERS.child(uid).updateChildValues(values, withCompletionBlock: completion)
+        }
+    }
+    
+    static func registerUserWithFirestore(withEmail email: String, password: String,
+                                          fullname: String, completion: @escaping(FirestoreCompletion)) {
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            guard let uid = result?.user.uid else { return }
+            let values = ["email": email,
+                          "fullname": fullname,
+                          "hasSeenOnboarding": false,
+                          "uid": uid] as [String : Any]
+            
+            Firestore.firestore().collection("users").document(uid).setData(values, completion: completion)
+            
         }
     }
     
@@ -71,10 +91,27 @@ struct Service {
         }
     }
     
+    static func fetchUserWithFirestore(completion: @escaping(User) -> Void) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        Firestore.firestore().collection("users").document(uid).getDocument { (snapshot, error) in
+            guard let dictionary = snapshot?.data() else { return }
+            
+            let user = User(dictionary: dictionary)
+            completion(user)
+        }
+    }
+    
     static func updateUserHasSeenOnboarding(completion: @escaping(DatabaseCompletion)) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         REF_USERS.child(uid).child("hasSeenOnboarding").setValue(true, withCompletionBlock: completion)
+    }
+    
+    static func updateUserHasSeenOnboardingFirestore(completion: @escaping(FirestoreCompletion)) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
         
+        let data = ["hasSeenOnboarding": true]
+        Firestore.firestore().collection("users").document(uid).updateData(data, completion: completion)
     }
     
     static func resetPassword(forEmail email: String, completion: SendPasswordResetCallback?) {

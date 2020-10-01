@@ -20,4 +20,11 @@ struct User {
         self.fullname = dictionary["fullname"] as? String ?? ""
         self.hasSeenOnboarding = dictionary["hasSeenOnboarding"] as? Bool ?? false
     }
+    
+    init(dictionary: [String: Any]) {
+        self.uid = dictionary["email"] as? String ?? ""
+        self.email = dictionary["email"] as? String ?? ""
+        self.fullname = dictionary["fullname"] as? String ?? ""
+        self.hasSeenOnboarding = dictionary["hasSeenOnboarding"] as? Bool ?? false
+    }
 }
