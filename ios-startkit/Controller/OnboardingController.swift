@@ -68,11 +68,11 @@ class OnboardingController: UIViewController {
     }
     
     func configureOnboardingDataSource() {
-        let item1 = OnboardingItemInfo(informationImage: #imageLiteral(resourceName: "baseline_insert_chart_white_48pt").withRenderingMode(.alwaysOriginal), title: MSG_METRICS, description: MSG_ONBOARDING_METRICS, pageIcon: UIImage(), color: .systemPurple, titleColor: .white, descriptionColor: .white, titleFont: UIFont.boldSystemFont(ofSize: 24), descriptionFont: UIFont.systemFont(ofSize: 16))
+        let item1 = OnboardingItemInfo(informationImage: #imageLiteral(resourceName: "chart").withRenderingMode(.alwaysOriginal).withTintColor(.white), title: MSG_METRICS, description: MSG_ONBOARDING_METRICS, pageIcon: UIImage(), color: #colorLiteral(red: 0.4588235294, green: 0.4745098039, blue: 0.9058823529, alpha: 1), titleColor: .white, descriptionColor: .white, titleFont: UIFont.boldSystemFont(ofSize: 24), descriptionFont: UIFont.systemFont(ofSize: 16))
         
-        let item2 = OnboardingItemInfo(informationImage: #imageLiteral(resourceName: "baseline_notifications_active_white_48pt").withRenderingMode(.alwaysOriginal), title: MSG_NOTIFICATIONS, description: MSG_ONBOARDING_NOTIFICATIONS, pageIcon: UIImage(), color: .systemBlue, titleColor: .white, descriptionColor: .white, titleFont: UIFont.boldSystemFont(ofSize: 24), descriptionFont: UIFont.systemFont(ofSize: 16))
+        let item2 = OnboardingItemInfo(informationImage: #imageLiteral(resourceName: "notifiacation_bell").withRenderingMode(.alwaysOriginal).withTintColor(.white), title: MSG_NOTIFICATIONS, description: MSG_ONBOARDING_NOTIFICATIONS, pageIcon: UIImage(), color: #colorLiteral(red: 0.5254901961, green: 0.4588235294, blue: 0.662745098, alpha: 1), titleColor: .white, descriptionColor: .white, titleFont: UIFont.boldSystemFont(ofSize: 24), descriptionFont: UIFont.systemFont(ofSize: 16))
         
-        let item3 = OnboardingItemInfo(informationImage: #imageLiteral(resourceName: "baseline_dashboard_white_48pt").withRenderingMode(.alwaysOriginal), title: MSG_DASHBOARD, description: MSG_ONBOARDING_DASHBOARD, pageIcon: UIImage(), color: .systemPink, titleColor: .white, descriptionColor: .white, titleFont: UIFont.boldSystemFont(ofSize: 24), descriptionFont: UIFont.systemFont(ofSize: 16))
+        let item3 = OnboardingItemInfo(informationImage: #imageLiteral(resourceName: "mac").withRenderingMode(.alwaysOriginal).withTintColor(.white), title: MSG_DASHBOARD, description: MSG_ONBOARDING_DASHBOARD, pageIcon: UIImage(), color: #colorLiteral(red: 0.3647058824, green: 0.3294117647, blue: 0.6431372549, alpha: 1), titleColor: .white, descriptionColor: .white, titleFont: UIFont.boldSystemFont(ofSize: 24), descriptionFont: UIFont.systemFont(ofSize: 16))
         
         onboardingItems.append(item1)
         onboardingItems.append(item2)

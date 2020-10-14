@@ -1,6 +1,6 @@
 # iOS Swift Login Kit📱
 
-Boilerplate Onboarding App in Swift with Firebase &amp Firestore Integration and Google account login.
+Boilerplate Onboarding App in Swift with Firebase & Firestore Integration and Google account login.
 
 <center>
   <img src="https://user-images.githubusercontent.com/50784573/94817530-12802600-0438-11eb-8e1c-87584f0d3a6e.jpg"/>
