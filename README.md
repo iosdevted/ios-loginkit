@@ -3,7 +3,7 @@
 Boilerplate Onboarding App in Swift with Firebase & Firestore Integration and Google account login.
 
 <center>
-  <img src="https://user-images.githubusercontent.com/50784573/94817530-12802600-0438-11eb-8e1c-87584f0d3a6e.jpg"/>
+  <img src=https://user-images.githubusercontent.com/50784573/96113272-eaf08980-0f1e-11eb-9c16-d6d9edb8a819.jpg/>
 </center>
 
 <p>
