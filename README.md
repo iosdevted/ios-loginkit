@@ -3,12 +3,12 @@
 Boilerplate Onboarding App in Swift with Firebase & Firestore Integration and Google account login.
 
 <p>
-  <img src="https://user-images.githubusercontent.com/50784573/104917851-4ecf9600-59d7-11eb-9021-e0217a07ea1e.gif" Height=300/>
-  <img src="https://user-images.githubusercontent.com/50784573/105037194-f8c72500-5aa0-11eb-8105-0426408ba1f0.png" Height=300/>
-  <img src="https://user-images.githubusercontent.com/50784573/105037212-fe246f80-5aa0-11eb-8c05-497a2b0d10e4.png" Height=300/>
-  <img src="https://user-images.githubusercontent.com/50784573/105037214-febd0600-5aa0-11eb-9c88-10e863289547.png" Height=300/>
-  <img src="https://user-images.githubusercontent.com/50784573/105037215-ffee3300-5aa0-11eb-8b3e-5240fc2a15fa.png" Height=300/>
-  <img src="https://user-images.githubusercontent.com/50784573/105037218-ffee3300-5aa0-11eb-90db-df9d76fe802c.png" Height=300/>
+  <img src="https://user-images.githubusercontent.com/50784573/104917851-4ecf9600-59d7-11eb-9021-e0217a07ea1e.gif" Height=270/>
+  <img src="https://user-images.githubusercontent.com/50784573/105037194-f8c72500-5aa0-11eb-8105-0426408ba1f0.png" Height=270/>
+  <img src="https://user-images.githubusercontent.com/50784573/105037212-fe246f80-5aa0-11eb-8c05-497a2b0d10e4.png" Height=270/>
+  <img src="https://user-images.githubusercontent.com/50784573/105037214-febd0600-5aa0-11eb-9c88-10e863289547.png" Height=270/>
+  <img src="https://user-images.githubusercontent.com/50784573/105037215-ffee3300-5aa0-11eb-8b3e-5240fc2a15fa.png" Height=270/>
+  <img src="https://user-images.githubusercontent.com/50784573/105037218-ffee3300-5aa0-11eb-90db-df9d76fe802c.png" Height=270/>
 </p>
 
 <p>
