@@ -30,7 +30,7 @@ Start your next iOS app with this Swift Login Kit. With fully functional feature
 3. Install the pods by running
 
 ```
-pod update
+pod install
 ```
 
 4. Open the xcworkspace file with the latest version of Xcode
